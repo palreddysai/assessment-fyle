@@ -11,15 +11,18 @@ export class GitReposComponent implements OnInit {
   getProfileResp : any = [];
   getRepos: any;
   selected_page:any;
-  p:any;
-  pageObj: any;
+
   currentPage = 1;
   contentLoaded: boolean = false;
   constructor(private _service: GitrepoService) {}
 
 
   ngOnInit(): void {
+    setInterval(()=>{
+      this.contentLoaded = true
       this.getProfile();
+
+    },4000)
 
   }
 
@@ -32,14 +35,12 @@ export class GitReposComponent implements OnInit {
     })
   }
   getRepositories (){
-    this._service.getRepos(this.userName, this.selected_page).subscribe( getReposResponse => {
+    this._service.getRepos(this.userName).subscribe( getReposResponse => {
       console.log("entering",this.selected_page)
       this.contentLoaded = true
       this.getRepos = getReposResponse;
     })
   }
-  onPageChanged(e) {
-    this.pageObj = e.target.value;
-  }
+
 
 }

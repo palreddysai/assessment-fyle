@@ -10,101 +10,19 @@
           placeholder="Search GitHub"
           [(ngModel)]="userName"
           name="userName"
-          (keyup)="getProfile()"
         />
+        <button class="btn btn-info mt-2" (click)="getProfile()">Search</button>
       </div>
     </form>
   </div>
-  <div class="row gitProfile">
-    <ngx-skeleton-loader
-      *ngIf="!contentLoaded"
-      appearance="circle"
-      [theme]="{ width: '200px', height: '200px' }"
-    >
-    </ngx-skeleton-loader>
-    <div class="col-md-3" *ngIf="contentLoaded">
-      <img
-        src="{{ getProfileResp.avatar_url }}"
-        class="img-thumbnail img-fluid"
-      />
-      <p>
-        <a
-          href="{{ getProfileResp.html_url }}"
-          target="_blank"
-          *ngIf="getProfileResp.html_url"
-          ><i class="fa fa-link mr-2" aria-hidden="true"></i
-          >{{ getProfileResp.html_url }}</a
-        >
-      </p>
-    </div>
-    <div class="col-md-9">
-      <ngx-skeleton-loader
-        count="4"
-        *ngIf="!contentLoaded"
-        [theme]="{
-          width: '100%',
-          'border-radius': '0',
-          height: '30px',
-          'margin-bottom': '10px'
-        }"
-      ></ngx-skeleton-loader>
-      <ul *ngIf="contentLoaded">
-        <li class="list-item" *ngIf="getProfileResp.name">
-          <h3 #disName>{{ getProfileResp.name }}</h3>
-        </li>
-        <li class="list-item" *ngIf="getProfileResp.bio" #disBio>
-          {{ getProfileResp.bio }}
-        </li>
-        <li class="list-item" *ngIf="getProfileResp.location" #disLocation>
-          <i class="fa fa-map-marker mr-2" aria-hidden="true"></i
-          >{{ getProfileResp.location }}
-        </li>
-        <li
-          class="list-item"
-          *ngIf="getProfileResp.twitter_username"
-          #disTwitter
-        >
-          Twitter: {{ getProfileResp.twitter_username }}
-        </li>
-      </ul>
-    </div>
-  </div>
+  <app-github-profile
+    [getProfileResp]="getProfileResp"
+    [contentLoaded]="contentLoaded"
+  ></app-github-profile>
   <!-- Repositories -->
-  <div class="repo">
-    <h5 class="text-center">Repositories</h5>
-    <ngx-skeleton-loader
-      *ngIf="!contentLoaded"
-      appearance="circle"
-      [theme]="{ width: '200px', height: '200px' }"
-    >
-    </ngx-skeleton-loader>
-    <ul class="row" *ngIf="contentLoaded">
-      <li
-        class="list-item col-md-5"
-        *ngFor="
-          let repo of getRepos | paginate: { itemsPerPage: 10, currentPage: p }
-        "
-      >
-        <div class="repo-list">
-          <p>
-            <a
-              href="{{ repo.html_url }}"
-              target="_blank"
-              class="text-primary"
-              >{{ repo.name | titlecase }}</a
-            >
-            <br />
-            <small>Created On: {{ repo.created_at | date: "dd-MM-yy" }}</small>
-          </p>
-          <p class="font-weight-bold">{{ repo.description | titlecase }}</p>
-          <p class="badge badge-primary p-2">{{ repo.language }}</p>
-        </div>
-      </li>
-    </ul>
-
-    <pagination-controls
-      (pageChange)="p = $event"
-      class="text-center"
-    ></pagination-controls>
-  </div>
+  <app-github-repositories
+    [getRepos]="getRepos"
+    [contentLoaded]="contentLoaded"
+    [userName]="userName"
+  ></app-github-repositories>
 </section>

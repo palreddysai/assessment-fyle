@@ -1,0 +1,46 @@
+<div class="row gitProfile">
+  <ngx-skeleton-loader
+    *ngIf="!contentLoaded"
+    appearance="circle"
+    [theme]="{ width: '200px', height: '200px' }"
+  >
+  </ngx-skeleton-loader>
+  <div class="col-md-3" *ngIf="contentLoaded">
+    <img
+      src="{{ getProfileResp.avatar_url }}"
+      class="img-thumbnail img-fluid"
+    />
+    <p>
+      <a
+        href="{{ getProfileResp.html_url }}"
+        target="_blank"
+        *ngIf="getProfileResp.html_url"
+        ><i class="fa fa-link mr-2" aria-hidden="true"></i
+        >{{ getProfileResp.html_url }}</a
+      >
+    </p>
+  </div>
+  <div class="col-md-9">
+    <ngx-skeleton-loader
+      *ngIf="!contentLoaded"
+      [theme]="{ width: '70%', height: '40px' }"
+      count="4"
+    >
+    </ngx-skeleton-loader>
+    <ul *ngIf="contentLoaded">
+      <li class="list-item" *ngIf="getProfileResp.name">
+        <h3 #disName>{{ getProfileResp.name }}</h3>
+      </li>
+      <li class="list-item" *ngIf="getProfileResp.bio" #disBio>
+        {{ getProfileResp.bio }}
+      </li>
+      <li class="list-item" *ngIf="getProfileResp.location" #disLocation>
+        <i class="fa fa-map-marker mr-2" aria-hidden="true"></i
+        >{{ getProfileResp.location }}
+      </li>
+      <li class="list-item" *ngIf="getProfileResp.twitter_username" #disTwitter>
+        Twitter: {{ getProfileResp.twitter_username }}
+      </li>
+    </ul>
+  </div>
+</div>

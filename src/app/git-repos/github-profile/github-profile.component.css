@@ -1,0 +1,17 @@
+.gitProfile {
+  width: 90%;
+  margin: 0 auto;
+}
+.img-thumbnail {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+li {
+  padding: 12px 6px;
+  list-style-type: none;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
