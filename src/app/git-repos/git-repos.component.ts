@@ -7,7 +7,7 @@ import { GitrepoService } from '../shared/gitrepo.service';
   styleUrls: ['./git-repos.component.css']
 })
 export class GitReposComponent implements OnInit {
-  userName: string = "johnpapa";
+  userName: string = "PalreddySai";
   getProfileResp: any = [];
   getRepos: any;
   selected_page: any;
@@ -20,7 +20,7 @@ export class GitReposComponent implements OnInit {
   ngOnInit(): void {
     // setInterval(()=>{
     //   this.contentLoaded = true
-    //   this.getProfile();
+    this.getProfile();
 
     // },4000)
 

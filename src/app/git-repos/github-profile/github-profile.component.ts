@@ -6,14 +6,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./github-profile.component.css']
 })
 export class GithubProfileComponent implements OnInit {
-@Input() getProfileResp:any=[];
-@Input() contentLoaded:boolean;
+  @Input() getProfileResp: any = [];
+  @Input() contentLoaded: boolean;
   constructor() { }
 
   ngOnInit(): void {
-    setInterval(()=>{
-      this.contentLoaded = true
-    },4000)
+    //   setInterval(()=>{
+    //     this.contentLoaded = true
+    //   },4000)
   }
 
 }
